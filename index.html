@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portofolio — Tema Merah Muda</title>
+  <meta name="description" content="Website portofolio." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --pink-900:#3b0b24;
+      --pink-800:#5c1036;
+      --pink-700:#8c1552;
+      --pink-600:#c21b74;
+      --pink-500:#ff2b93; /* aksen */
+      --pink-400:#ff6bb6;
+      --pink-300:#ff9ecf;
+      --pink-200:#ffc7e2;
+      --pink-100:#ffe6f2;
+      --ink-900:#0c0a0b; /* teks gelap */
+      --ink-100:#f9f8f9; /* teks terang */
+      --card:#20111b99;
+      --shadow: 0 10px 30px rgba(255, 43, 147, .25);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0}
+    body{
+      font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,'Helvetica Neue',Arial,"Apple Color Emoji","Segoe UI Emoji";
+      color:var(--ink-100);
+      background: radial-gradient(1200px 1200px at 80% -10%, var(--pink-500) 0%, transparent 35%),
+                  radial-gradient(900px 900px at -10% 10%, var(--pink-700) 0%, transparent 40%),
+                  linear-gradient(180deg, var(--pink-900), var(--pink-800));
+      min-height:100svh;
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+    a{color:var(--pink-300); text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    /* NAV */
+    .nav{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(90deg, #00000060, #00000010);
+      border-bottom:1px solid #ffffff20;
+    }
+    .nav-inner{display:flex; align-items:center; justify-content:space-between; gap:16px; max-width:1200px; margin:auto; padding:14px 20px}
+    .brand{font-weight:700; letter-spacing:.5px}
+    .brand span{color:var(--pink-400)}
+    .nav a{padding:8px 12px; border-radius:999px}
+    .nav a:hover{background:#ffffff10}
+
+    /* LAYOUT */
+    .wrap{max-width:1200px; margin:0 auto; padding:0 20px}
+    section{padding:80px 0}
+
+    /* HERO */
+    .hero{display:grid; grid-template-columns:1.2fr .8fr; gap:30px; align-items:center;}
+    .badge{display:inline-flex; gap:8px; align-items:center; background:#ffffff10; border:1px solid #ffffff20; padding:6px 12px; border-radius:999px; font-size:12px}
+    .title{font-size:clamp(36px, 6vw, 64px); line-height:1.1; margin:12px 0 10px}
+    .subtitle{font-size:clamp(16px, 2.2vw, 22px); color:#f4d8e7}
+    .cta{margin-top:28px; display:flex; gap:12px; flex-wrap:wrap}
+    .btn{display:inline-flex; align-items:center; gap:10px; padding:12px 18px; border-radius:14px; border:1px solid #ffffff20; background:#ffffff10; cursor:pointer; font-weight:600}
+    .btn.primary{background:linear-gradient(180deg, var(--pink-500), var(--pink-600)); border:none; box-shadow:var(--shadow)}
+    .btn:hover{transform:translateY(-1px)}
+
+    .panel{background:var(--card); border:1px solid #ffffff1a; border-radius:18px; padding:16px; box-shadow:var(--shadow)}
+    .audio-wrap{display:flex; flex-direction:column; gap:12px}
+    .audio-row{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+    .pill{font-size:12px; padding:4px 10px; border-radius:999px; border:1px solid #ffffff26; background:#ffffff0d}
+    .range{appearance:none; width:170px; height:6px; border-radius:999px; background:#ffffff33}
+    .range::-webkit-slider-thumb{appearance:none; width:16px; height:16px; border-radius:50%; background:var(--pink-400); border:2px solid white}
+
+    /* SECTIONS */
+    .cards{display:grid; grid-template-columns:repeat(12, 1fr); gap:18px}
+    .card{grid-column:span 6; background:var(--card); border:1px solid #ffffff1a; border-radius:18px; padding:22px; transition:transform .2s ease, box-shadow .2s ease}
+    .card:hover{transform:translateY(-3px); box-shadow: var(--shadow)}
+    .card h3{margin:0 0 8px}
+    .chip{display:inline-block; font-size:12px; padding:6px 10px; background:#ffffff12; border:1px solid #ffffff2b; border-radius:999px; margin-right:8px; margin-top:8px}
+
+    .timeline{position:relative; padding-left:24px}
+    .timeline::before{content:""; position:absolute; left:8px; top:0; bottom:0; width:2px; background:#ffffff26}
+    .t-item{position:relative; margin:18px 0; padding-left:10px}
+    .t-item::before{content:""; position:absolute; left:-6px; top:8px; width:12px; height:12px; border-radius:50%; background:var(--pink-400); box-shadow:0 0 0 3px #ffffff22}
+
+    .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+    .kpi{background:#ffffff12; border:1px solid #ffffff22; padding:18px; border-radius:16px; text-align:center}
+    .kpi b{font-size:28px}
+
+    /* FOOTER */
+    footer{padding:40px 0; border-top:1px solid #ffffff20; color:#f4d8e7}
+
+    /* RESPONSIVE */
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr}
+      .card{grid-column:span 12}
+      .grid-3{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="nav">
+    <div class="nav-inner wrap">
+      <div class="brand">Porto<span>folio</span></div>
+      <div class="links">
+        <a href="#beranda">Beranda</a>
+        <a href="#bakat">Bakat</a>
+        <a href="#proyek">Pengalaman</a>
+        <a href="#kontak">Kontak</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="beranda" class="wrap">
+    <div class="hero">
+      <div>
+        <span class="badge">✨ Portofolio pertama</span>
+        <h1 class="title">Halo, saya <span style="color:var(--pink-300)">Anggi</span>.<br/>Ingin memberitahu profil saya dari website portofolio.</h1>
+        <p class="subtitle">Halo nama saya Anggi Jamak,Saya bersekolah di SMAN 1 Tukka,Saya memiliki mapel favorit yaitu Bahasa inggris.</p>
+        <div class="cta">
+          <a class="btn primary" href="#bakat">Lihat 2 Bakat</a>
+          <a class="btn" href="#proyek">Lihat Pengalaman</a>
+        </div>
+      </div>
+
+      <!-- AUDIO CONTROL -->
+      <div class="panel audio-wrap" aria-labelledby="judul-audio">
+        <div class="pill" id="judul-audio">🎵 Pemutar Lagu: <b>Exile — Taylor Swift</b></div>
+        <audio id="bgm" preload="metadata" src="audio/exile.mp3"></audio>
+        <div class="audio-row">
+          <button class="btn primary" id="playBtn" aria-label="Putar">▶️ Putar</button>
+          <button class="btn" id="muteBtn" aria-label="MUTE">🔇 MUTE</button>
+          <label class="pill" for="vol">Volume</label>
+          <input class="range" id="vol" type="range" min="0" max="1" step="0.01" value="0.7" aria-label="Volume" />
+          <span class="pill" id="status">00:00</span>
+        </div>
+        <div class="pill" id="audioNote">tekan Putar untuk memulai.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KPI / RINGKASAN -->
+  <section class="wrap" aria-label="Ringkasan">
+
+  </section>
+
+  <!-- BAKAT (2 saja) -->
+  <section id="bakat" class="wrap" aria-labelledby="judul-bakat">
+    <h2 id="judul-bakat" class="title" style="font-size:clamp(28px,4vw,44px)">Bakat Unggulan</h2>
+    <div class="cards">
+      <article class="card" role="article">
+        <h3>Berbahasa inggris</h3>
+        <p>Sesuai bakat utama saya saya sering <i>Menggunakan Bahasa inggris dalam kehidupan saya sehari hari</i>  Walaupun saya sudah terbiasa menggunakan Bahasa Inggris saya tetap mengasah skill saya dalam berbahasa ingris.</p>
+        <div>
+          <span class="chip">Publish Speaking</span>
+          <span class="chip">Write</span>
+          <span class="chip">Speaking</span>
+          <span class="chip">Listening</span>
+        </div>
+      </article>
+      <article class="card" role="article">
+        <h3>Bernyanyi</h3>
+        <p>Saya memiliki kebiasaan bernyanyi di sela-sela kesibukan atau kegiatan sehari-hari saya, sebagai cara untuk melepas rasa lelah dan menyegarkan pikiran. Salah satu hal yang paling saya nikmati adalah mendengarkan sekaligus menyanyikan lagu-lagu yang dibawakan oleh Taylor Swift, karena liriknya yang menyentuh dan melodi yang mudah diingat membuat saya semakin bersemangat.</p>
+        <div>
+          <span class="chip">Taylor Swift</span>
+      </article>
+    </div>
+  </section>
+
+  <!-- PROYEK -->
+  <section id="proyek" class="wrap" aria-labelledby="judul-proyek">
+    <h2 id="judul-proyek" class="title" style="font-size:clamp(28px,4vw,44px)">Pengalaman</h2>
+    <div class="cards">
+      <article class="card">
+        <h3>Wakil Ketua Osis Periode 2024-2025</h3>
+        <p>Saya menjadi Wakil Ketua Osis di SMAN 1 TUKKA dengan Ketua saya bernama Maylani,.</p>
+        <div>
+          <span class="chip">Wakil  Ketua Osis</span>
+          <span class="chip">2024-2025</span>
+        </div>
+      </article>
+    </div>
+
+    <div class="panel" style="margin-top:18px">
+      <b></b> 
+  </section>
+
+  <!-- KONTAK -->
+  <section id="kontak" class="wrap" aria-labelledby="judul-kontak">
+    <h2 id="judul-kontak" class="title" style="font-size:clamp(28px,4vw,44px)">Kontak</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Whatsapp</h3>
+        <p><a href="#">+6282244884740</a></p>
+      </div>
+      <div class="card">
+        <h3>Instagram</h3>
+        <p><a href="#">@anggiijmbk</a></p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">© <span id="year"></span> Anggi.</div>
+  </footer>
+
+  <script>
+    // Tahun dinamis
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Smooth scroll untuk anchor
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id = a.getAttribute('href');
+        if(id.length > 1){
+          e.preventDefault();
+          document.querySelector(id).scrollIntoView({behavior:'smooth'});
+        }
+      })
+    })
+
+    // AUDIO LOGIC
+    const audio = document.getElementById('bgm');
+    const playBtn = document.getElementById('playBtn');
+    const muteBtn = document.getElementById('muteBtn');
+    const vol = document.getElementById('vol');
+    const status = document.getElementById('status');
+
+    let raf;
+
+    function fmt(t){
+      if(!isFinite(t)) return '00:00';
+      const m = Math.floor(t/60).toString().padStart(2,'0');
+      const s = Math.floor(t%60).toString().padStart(2,'0');
+      return `${m}:${s}`;
+    }
+
+    function update(){
+      status.textContent = `${fmt(audio.currentTime)} / ${fmt(audio.duration)}`;
+      if(!audio.paused) raf = requestAnimationFrame(update);
+    }
+
+    playBtn.addEventListener('click', async ()=>{
+      if(audio.paused){
+        try{ await audio.play(); playBtn.textContent = '⏸️ Jeda'; requestAnimationFrame(update);}catch(err){
+          alert('Tidak bisa memutar otomatis. Pastikan file berada di "audio/exile.mp3" dan tekan tombol Putar.');
+        }
+      }else{ audio.pause(); playBtn.textContent = '▶️ Putar'; }
+    });
+
+muteBtn.addEventListener('click', ()=>{
+      audio.muted = !audio.muted; muteBtn.textContent = audio.muted ? '🔈 UNMUTE' : '🔇 MUTE';
+    });
+
+    vol.addEventListener('input', ()=>{ audio.volume = vol.valueAsNumber; });
+
+    audio.addEventListener('loadedmetadata', ()=>{ status.textContent = `00:00 / ${fmt(audio.duration)}`; });
+    audio.addEventListener('ended', ()=>{ playBtn.textContent = '▶️ Putar'; });
+    audio.addEventListener('error', ()=>{
+      const note = document.getElementById('audioNote');
+      note.innerHTML = '⚠️ File audio belum ditemukan. Tambahkan berkas ke <code>audio/exile.mp3</code>.';
+    });
+  </script>
+</body>
+</html>
